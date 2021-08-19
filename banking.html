@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Banking Site</title>
+    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="text-5xl text-center my-8">Let's Get some <span class="text-pink-400 font-semibold">Money</span></h1>
+    </header>
+    <main class="w-3/4 mx-auto">
+        <section class="pt-8">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-green-400 p-10 text-white font-semibold text-4xl rounded-2xl">
+                    <h3>Deposit</h3>
+                    <h4>$<span id="deposit-total">00</span></h4>
+                </div>
+                <div class="bg-blue-400 p-10 text-white font-semibold text-4xl rounded-2xl">
+                    <h3>Withdray</h3>
+                    <h4>$<span id="withdraw-total">00</span></h4>
+                </div>
+                <div class="bg-purple-400 p-10 text-white font-semibold text-4xl rounded-2xl">
+                    <h3>Balance</h3>
+                    <h4>$<span id="balance-total">1200</span></h4>
+                </div>
+            </div>
+        </section>
+        <section class="mt-10">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-indigo-300 rounded-2xl py-4">
+                    <h2 class="mx-4 text-gray-700 text-5xl text-semibold py-8">Deposit Here</h2>
+                    <input id="deposit-amount" class="w-3/4 p-1 rounded mx-4" type="text" placeholder="deposit amount">
+                    <button id="deposit-button" class="text-gray-700 text-3xl mx-4 px-4 py-2 bg-red-200 rounded my-4">Deposit</button>
+                </div>
+                <div class="bg-red-200 rounded-2xl py-4">
+                    <h2 class="mx-4 text-gray-700 text-5xl text-semibold py-8">Withdray Here</h2>
+                    <input id="withdraw-amount" class="w-3/4 p-1 rounded mx-4" type="text" placeholder="withodraw amount">
+                    <button id="withdraw-button" class="text-gray-700 text-3xl mx-4 px-4 py-2 bg-purple-400 rounded my-4">Withdray</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        //Add Deposit Event Handler
+        document.getElementById('deposit-button').addEventListener('click', function(){
+            //Previous amount
+            const previousTotalDeposit = parseFloat(document.getElementById('deposit-total').innerText);
+            const previousTotalWithdraw = parseFloat(document.getElementById('withdraw-total').innerText);
+            const previousTotalBalance = parseFloat(document.getElementById('balance-total').innerText);
+
+            //New amount
+            const newDeposit = parseFloat(document.getElementById('deposit-amount').value);
+
+            //Update withdraw and balance
+            document.getElementById('deposit-total').innerText = previousTotalDeposit + newDeposit;
+            document.getElementById('balance-total').innerText = previousTotalBalance + newDeposit;
+
+            //Clear input field
+            document.getElementById('deposit-amount').value = '';
+        })
+
+        //Add Withdraw Event Listener
+        document.getElementById('withdraw-button').addEventListener('click', function(){
+            //Previous amount
+            const previousTotalWithdraw = parseFloat(document.getElementById('withdraw-total').innerText);
+            const previousTotalBalance = parseFloat(document.getElementById('balance-total').innerText);
+
+            //New withdraw and new balance
+            const newWithdraw = parseFloat(document.getElementById('withdraw-amount').value);
+
+            //Update withdraw and balance
+            document.getElementById('withdraw-total').innerText = previousTotalWithdraw + newWithdraw;
+            document.getElementById('balance-total').innerText = previousTotalBalance - newWithdraw;
+
+            //Clear input field
+            document.getElementById('withdraw-amount').value = '';
+        })
+    </script>
+</body>
+</html>
