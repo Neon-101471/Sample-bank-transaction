@@ -1,7 +1,7 @@
 document.getElementById('login-submit').addEventListener('click', function(){
     const userEmail = document.getElementById('user-email').value;
     const userPasswrod = document.getElementById('user-password').value;
-    if(userEmail == 'sample10@gmail.com' && userPasswrod == 'sample'){
+    if(userEmail == 'simple@gmail.com' && userPasswrod == 'simple'){
         window.location.href = 'banking.html';
     }
     else{
